@@ -84,7 +84,8 @@ def calcula_curva_de_regularizada(
     curva_reg_inicial = gera_curva_de_regularizacao(
         reservatorio=reservatorio,
         serie_temporal=serie_temporal,
-        faixa_de_vazoes=(0, vazao_media * 5)
+        faixa_de_vazoes=(0, vazao_media * 5),
+        percentual_volume_inicial=percentual_volume_inicial
     )
     
     curva_de_regularizacao: list[Regularizacao] = []
