@@ -169,21 +169,21 @@ class CavReservatorioONS:
 
     def __init__(
         self,
-        params_area_fn_volume: ParametrosPolinomiosONS,
+        params_area_fn_cota: ParametrosPolinomiosONS,
         # params_cota_fn_vol: ParametrosPolinomiosONS,
         curva_cota_volume: CurvaCotaVolumeONS
     ) -> None:
         
         self.curva_cota_volume = curva_cota_volume
-        self.polinomial_area_fn_cota = self.__retorna_polinomial(params_area_fn_volume)
+        self.polinomial_area_fn_cota = self.__retorna_polinomial(params_area_fn_cota)
         # self.polinomial_cota_fn_volume = self.__retorna_polinomial(params_cota_fn_vol)
 
     def __retorna_polinomial(self, cav: ParametrosPolinomiosONS):
-        params = [cav[i] for i in ('a', 'b', 'c', 'd')]
+        params = [cav[i] for i in ('a', 'b', 'c', 'd', 'e')]
         return np.polynomial.Polynomial(params)
 
-    def calcula_area_por(self, *, cota: float) -> float:
-        return self.polinomial_area_fn_cota(cota)
+    def calcula_area_por(self, *, cota: float) -> np.floating:
+        return self.polinomial_area_fn_cota(cota)  # type: ignore
 
     def calcula_areas_por(self, *, cotas: NDArray) -> NDArray:
         return self.polinomial_area_fn_cota(cotas)
