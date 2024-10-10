@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal, TypedDict
 
 import pandas as pd
@@ -73,7 +73,7 @@ class ColunasSerieTemporal(TypedDict):
 
 @dataclass
 class SerieTemporal:
-    dataframe: pd.DataFrame
+    dataframe: pd.DataFrame = field(repr=False)
     nome_das_colunas: ColunasSerieTemporal
     freq: Frequencia
 
